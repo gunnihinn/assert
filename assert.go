@@ -19,6 +19,10 @@
 // Package assert provides C-style assertions for Go.
 package assert
 
+import (
+	"fmt"
+)
+
 // Asserter is an on/off switch for assertions.
 // Recall that bool variables initialize to false.
 type Asserter struct {
@@ -43,10 +47,11 @@ func (a *Asserter) Off() {
 }
 
 // Assert panics and prints message if condition is not fulfilled.
-func (a Asserter) Assert(condition bool, message string) {
+func (a Asserter) Assert(condition bool, format string, f ...interface{}) {
 	if a.on {
 		if !condition {
-			panic(message)
+			msg := fmt.Sprintf(format, f...)
+			panic(msg)
 		}
 	}
 }

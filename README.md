@@ -35,6 +35,10 @@ the message explaining what went wrong. If you turn assertions off,
 
 the code will run and exit normally.
 
+The `Assert` method supports `fmt.Printf` string formatting:
+
+    a.Assert(false, "%s: %d", "Number of errors", 10)
+
 ## Tests and coverage
 
 The package is fully covered by tests. Run them as usual with `go test`,
